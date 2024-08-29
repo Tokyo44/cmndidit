@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Online - SRC Sports Academy</title>
+    <link rel="stylesheet" href="book.css">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>Pentecost University SRC Sports Academy</h1>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="new-activities.html">Activities</a></li>
+                <li><a href="bookonline.html" class="active">Book|Online</a></li>
+                <li><a href="events.html">Events</a></li>
+            </ul>
+            <button class="burger">
+                <span class="line1"></span>
+                <span class="line2"></span>
+                <span class="line3"></span>
+            </button>
+        </nav>
+    </header>
+
+    <section class="form-section">
+        <div class="form-container">
+            <h2>Book a Sports Program</h2>
+            <form id="booking-form" action="\my-webapp\src\com\tokyo33bookonline\BookOnline.class" method="POST">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" required>
+
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" required>
+
+                <label for="weight">Weight (kg):</label>
+                <input type="number" id="weight" name="weight" required>
+
+                <label for="height">Height (cm):</label>
+                <input type="number" id="height" name="height" required>
+
+                <label for="program">Program of Interest:</label>
+                <select id="program" name="program" required>
+                    <option value="football">Football</option>
+                    <option value="rugby">Rugby</option>
+                    <option value="ballet">Ballet</option>
+                    <option value="table tennis">Table Tennis</option>
+                    <option value="handball">Handball</option>
+                    <option value="gymnastics">Gymnastics</option>
+                </select>
+
+                <div class="g-recaptcha" data-sitekey="6LdPeTEqAAAAAIBaP2jqATUj_JgYG9Ac-iyxJzj0" data-callback="onRecaptchaSuccess" data-expired-callback="onRecaptchaExpired"></div>
+                <br>
+
+                <button type="submit" class="btn">Submit</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://web.facebook.com/pentvars/?_rdc=1&_rdr"><i class="bx bxl-facebook"></i></a>
+            <a href="https://x.com/i/flow/login"><i class="bx bxl-twitter"></i></a>
+            <a href="https://www.instagram.com/?hl=en"><i class="bx bxl-instagram"></i></a>
+        </div>
+        <p>&copy; 2024 SRC Sports Academy</p>
+    </footer>
+
+    <script src="style11.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const burger = document.querySelector('.burger');
+            const navLinks = document.querySelector('.nav-links');
+            const bookingForm = document.getElementById('booking-form');
+            let recaptchaVerified = false;
+
+            // Toggle navigation menu on burger click
+            burger.addEventListener('click', function() {
+                burger.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+
+            // Handle form submission
+            bookingForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent the form from submitting the traditional way
+
+                // Check if reCAPTCHA is completed
+                if (!recaptchaVerified) {
+                    alert('Please complete the reCAPTCHA.');
+                    return;
+                }
+
+                // Collect form data
+                const formData = new FormData(bookingForm);
+                const name = formData.get('name');
+                const email = formData.get('email');
+                const phone = formData.get('phone');
+                const age = formData.get('age');
+                const weight = formData.get('weight');
+                const height = formData.get('height');
+                const program = formData.get('program');
+
+                // Show a success message
+                alert(`Thanks for booking, ${name}! A member of our team will contact you for payment details.`);
+
+                // Optionally, you can reset the form after submission
+                bookingForm.reset();
+                grecaptcha.reset(); // Reset reCAPTCHA
+                recaptchaVerified = false; // Reset reCAPTCHA verification flag
+            });
+
+            // Function to handle reCAPTCHA success
+            window.onRecaptchaSuccess = function() {
+                recaptchaVerified = true;
+            };
+
+            // Function to handle reCAPTCHA expiration
+            window.onRecaptchaExpired = function() {
+                recaptchaVerified = false;
+            };
+        });
+    </script>
+</body>
+</html>

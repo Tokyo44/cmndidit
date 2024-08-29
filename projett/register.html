@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | Pentecost University SRC Sports Academy</title>
+    <link rel="stylesheet" href="registor.css">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1><a href="index.html">Pentecost University SRC Sports Academy</a></h1>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="register.html" class="active">Register</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="new-activities.html">Activities</a></li>
+                <li><a href="bookonline.html">Book|Online</a></li>
+                <li><a href="events.html">Events</a></li>
+            </ul>
+            <button class="burger">
+                <span class="line1"></span>
+                <span class="line2"></span>
+                <span class="line3"></span>
+            </button>
+        </nav>
+    </header>
+
+    <section class="register-section">
+        <div class="register-container">
+            <h2>Sign-up for sports programs</h2>
+            <form action="/yourproject/bookonline" method="post" class="register-form">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="program">Program of Interest:</label>
+                <select id="program" name="program" required>
+                    <option value="football">Football</option>
+                    <option value="rugby">Rugby</option>
+                    <option value="ballet">Ballet</option>
+                    <option value="table-tennis">Table Tennis</option>
+                    <option value="handball">Handball</option>
+                    <option value="gymnastics">Gymnastics</option>
+                    <option value="wrestling">Wrestling</option>
+                    <option value="taekwondo">Taekwondo</option>
+                    <option value="judo">Judo</option>
+                    <option value="volleyball">Volleyball</option>
+                </select>
+
+                <label for="subscribe">
+                    <input type="checkbox" id="subscribe" name="subscribe">
+                    Subscribe to email newsletters
+                </label>
+
+                <div id="recaptcha-container" class="g-recaptcha" data-sitekey="6LdPeTEqAAAAAIBaP2jqATUj_JgYG9Ac-iyxJzj0"></div>
+                <br>
+
+                <button type="submit" class="btn">Submit</button>
+                <p>By registering, you agree to our <a class="pp1" href="privacy-policy.html">Privacy Policy</a> and <a class="pp1" href="terms-of-service.html">Terms of Service</a>.</p>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://web.facebook.com/pentvars/?_rdc=1&_rdr"><i class="bx bxl-facebook"></i></a>
+            <a href="https://x.com/i/flow/login"><i class="bx bxl-twitter"></i></a>
+            <a href="https://www.instagram.com/?hl=en"><i class="bx bxl-instagram"></i></a>
+        </div>
+        <p>&copy; 2024 SRC Sports Academy</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const burger = document.querySelector('.burger');
+            const navLinks = document.querySelector('.nav-links');
+            const registerForm = document.querySelector('.register-form');
+            const recaptchaWidgetId = grecaptcha.render('recaptcha-container', {
+                'sitekey': '6LdPeTEqAAAAAIBaP2jqATUj_JgYG9Ac-iyxJzj0'
+            });
+
+            // Toggle navigation menu on burger click
+            burger.addEventListener('click', function() {
+                burger.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+
+            // Handle form submission
+            registerForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent the form from submitting the traditional way
+
+                // Check if reCAPTCHA is completed
+                if (grecaptcha.getResponse() === '') {
+                    alert('Please complete the reCAPTCHA.');
+                    return;
+                }
+
+                // Collect form data
+                const formData = new FormData(registerForm);
+                const name = formData.get('name');
+                const email = formData.get('email');
+                const program = formData.get('program');
+                const subscribe = formData.get('subscribe') ? 'Yes' : 'No';
+
+                // Show a success message
+                alert(`Registration Successful!\n\nName: ${name}\nEmail: ${email}\nProgram: ${program}\nSubscribed: ${subscribe}`);
+
+                // Optionally, you can reset the form after submission
+                registerForm.reset();
+                grecaptcha.reset(); // Reset reCAPTCHA
+            });
+        });
+    </script>
+</body>
+</html>

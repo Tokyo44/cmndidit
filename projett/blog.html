@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - SRC Sports Academy</title>
+    <link rel="stylesheet" href="blog.css">
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1><a href="index.html">Pentecost University SRC Sports Academy</a></h1>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="blog.html" class="active">Blog</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="new-activities.html">Activities</a></li>
+                <li><a href="bookonline.html">Book|Online</a></li>
+                <li><a href="events.html">Events</a></li>
+            </ul>
+            <button class="burger">
+                <span class="line1"></span>
+                <span class="line2"></span>
+                <span class="line3"></span>
+            </button>
+        </nav>
+    </header>
+
+    <section class="blog-hero">
+        <h2>Latest Updates and News</h2>
+        <p>Stay updated with our latest programs, events, and success stories.</p>
+    </section>
+
+    <section class="blog-content">
+        <div class="blog-sidebar">
+            <h3>Categories</h3>
+            <ul>
+                <li><a href="#">Football</a></li>
+                <li><a href="#">Rugby</a></li>
+                <li><a href="#">Ballet</a></li>
+                <li><a href="#">Table Tennis</a></li>
+                <li><a href="#">Hand Ball</a></li>
+                <li><a href="#">Gymnastics</a></li>
+                <li><a href="#">Wrestling</a></li>
+                <li><a href="#">Taekwondo</a></li>
+                <li><a href="#">Judo</a></li>
+                <li><a href="#">Volleyball</a></li>
+            </ul>
+        </div>
+        
+        <div class="blog-posts">
+            <article class="post">
+                <img src="/projett/images/wres.jpg" alt="New Program Announcement">
+                <h3>New Program Announcement: Wrestling</h3>
+                <p>We are excited to announce the addition of Wrestling to our list of sports programs. Join us for an introductory session next week!</p>
+                <a href="blog-w.html" class="btn">Read More</a>
+            </article>
+
+            <article class="post">
+                <video controls width="800">
+                    <source src="/projett/videos/Recap.mp4.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <h3>Recap of the Annual Football Competition</h3>
+                <p>Our annual football competition was a huge success. Check out the highlights and see which team took home the trophy!</p>
+                <a href="blog-football.html" class="btn">Read More</a>
+            </article>
+
+            <article class="post">
+                <img src="/projett/images/athlete.jpg.jpg" alt="Inspirational Story">
+                <h3>Inspirational Story: Meet Our Star Athlete</h3>
+                <p>Read the inspiring story of our star athlete who has overcome numerous challenges to achieve greatness in their sport.</p>
+                <a href="blog-athlete.html" class="btn">Read More</a>
+            </article>
+
+            <article class="post">
+                <img src="/projett/images/coach.jpg" alt="Coach Interview">
+                <h3>Exclusive Interview with Albert Samuel</h3>
+                <p>Get insights from Albert Samuel about training techniques, team management, and what it takes to succeed in sports.</p>
+                <a href="blog-coach.html" class="btn">Read More</a>
+            </article>
+        </div>
+    </section>
+
+    <section class="comments">
+        <h3>Leave a Comment</h3>
+        <form id="comment-form">
+            <input type="text" id="username" placeholder="Your name..." required>
+            <textarea id="comment" rows="4" placeholder="Your comment..." required></textarea>
+            <button type="submit">Submit</button>
+        </form>
+
+        <div class="comment-list">
+            <h4>Recent Comments</h4>
+            <ul id="comment-list">
+                <li><strong>Jane Doe:</strong> Great new programs! Looking forward to joining the wrestling team.</li>
+                <li><strong>John Smith:</strong> The football competition was fantastic. Well done to everyone involved!</li>
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://web.facebook.com/pentvars/?_rdc=1&_rdr"><i class="bx bxl-facebook"></i></a>
+            <a href="https://x.com/i/flow/login"><i class="bx bxl-twitter"></i></a>
+            <a href="https://www.instagram.com/?hl=en"><i class="bx bxl-instagram"></i></a>
+        </div>
+        <p>&copy; 2024 SRC Sports Academy</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const burger = document.querySelector('.burger');
+            const navLinks = document.querySelector('.nav-links');
+
+            burger.addEventListener('click', function () {
+                navLinks.classList.toggle('active');
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const commentForm = document.getElementById('comment-form');
+            const commentList = document.getElementById('comment-list');
+
+            commentForm.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                const username = document.getElementById('username').value.trim();
+                const commentText = document.getElementById('comment').value.trim();
+
+                if (username === '' || commentText === '') {
+                    alert('Please fill out both fields.');
+                    return;
+                }
+
+                const newComment = document.createElement('li');
+                newComment.innerHTML = `<strong>${username}:</strong> ${commentText}`;
+                commentList.appendChild(newComment);
+                commentForm.reset();
+            });
+        });
+    </script>
+</body>
+</html>
